@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bet do Interior</title>
+<style>
+:root{--g:#ffbd21;--g2:#ff8b00;--r:#e10a0a;--bg:#050505;--p:#0d0a07}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+button,a{font:inherit}.top{position:fixed;z-index:50;inset:0 0 auto;height:78px;display:flex;align-items:center;background:rgba(4,4,4,.96);border-bottom:1px solid #7d500d;padding:0 22px;backdrop-filter:blur(12px)}
+.logo{width:225px}.logo img{width:205px;display:block}.nav{height:100%;display:flex;flex:1}.nav a{display:flex;align-items:center;padding:0 18px;color:#ddd;text-decoration:none;font-size:13px;font-weight:800;border-bottom:3px solid transparent}.nav a:hover,.nav a.active{color:var(--g);background:#160d04;border-bottom-color:var(--g)}.actions{display:flex;gap:9px}.btn{padding:12px 22px;border-radius:9px;font-weight:900;cursor:pointer}.login{background:#080808;border:1px solid var(--g);color:#fff}.register,.primary{background:linear-gradient(#ff352c,#a90000);border:1px solid #ff5b45;color:#fff}
+.side{position:fixed;z-index:40;top:78px;bottom:0;width:225px;background:linear-gradient(#0d0b08,#050505);border-right:1px solid #321f08;padding:16px 11px;overflow:auto}.side a{display:block;color:#eee;text-decoration:none;padding:12px 13px;border-radius:9px;margin:2px 0;font-size:14px}.side a:hover,.side a.active{background:linear-gradient(90deg,#d20a0a,#5b0000)}.sep{height:1px;background:#2b1b0b;margin:14px 7px}.vip{border:1px solid #d79b0d;border-radius:12px;padding:15px;margin:24px 7px;background:linear-gradient(135deg,#241807,#080706)}.vip b{color:#ffc42b}.vip small{display:block;color:#999;margin-top:5px}
+main{margin-left:225px;padding-top:78px}.hero{height:530px;position:relative;overflow:hidden;background:#080604}.slides{height:100%;display:flex;transition:transform .55s ease}.slide{min-width:100%;height:100%;background-position:center;background-size:cover}.slide.one{background-image:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.08)),url('assets/slide-01.jpg')}.slide.two{background-image:linear-gradient(90deg,rgba(0,0,0,.35),rgba(0,0,0,.1)),url('assets/slide-02.jpg')}.hero:after{content:"";position:absolute;inset:auto 0 0;height:100px;background:linear-gradient(transparent,#050505)}.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid #f1aa18;background:#080604c9;color:#fff;border-radius:50%;font-size:25px;cursor:pointer}.prev{left:16px}.next{right:16px}.dots{position:absolute;z-index:5;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:#777;border:0}.dot.on{background:#fff;box-shadow:0 0 10px var(--g)}
+.features{position:relative;z-index:8;margin:-25px 22px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.feature{padding:16px;border:1px solid #774d0c;border-radius:10px;background:linear-gradient(135deg,#17120b,#080705);box-shadow:0 12px 25px #000;display:flex;gap:11px;align-items:center}.feature i{font-style:normal;font-size:25px;color:var(--g)}.feature b{font-size:13px}.feature small{display:block;color:#999;margin-top:4px;font-size:10px}
+.section{padding:27px 22px}.heading{display:flex;align-items:center;justify-content:space-between}.heading h2{font-size:20px;margin:0}.heading button{background:none;border:0;color:var(--g);font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:9px;margin-top:15px}.game{background:#0c0907;border:1px solid #70460a;border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}.game:hover{transform:translateY(-5px);border-color:var(--g);box-shadow:0 8px 25px #ff9b0022}.game img{width:100%;aspect-ratio:1/1;display:block;object-fit:cover}.game p{font-size:11px;margin:0;padding:8px;color:#eee;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.livegrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:15px}.live{border:1px solid #743e09;border-radius:10px;overflow:hidden;background:#090605;cursor:pointer}.live img{width:100%;aspect-ratio:1.55;display:block;object-fit:cover}.live p{margin:0;padding:8px;font-size:11px}.badge{display:inline-block;background:#e20b0b;padding:4px 6px;border-radius:4px;font-size:8px;font-weight:900;margin-bottom:5px}
+.promo{margin:0 22px 30px;border:1px solid #9b630d;border-radius:12px;overflow:hidden;position:relative}.promo img{display:block;width:100%;height:150px;object-fit:cover}.promo button{position:absolute;right:25px;top:50%;transform:translateY(-50%);padding:14px 22px;border-radius:9px;color:#fff;font-weight:900;background:#d10a0a;border:1px solid #ffbf20;cursor:pointer}
+.search{position:fixed;z-index:100;inset:0;background:#000b;display:none;align-items:flex-start;justify-content:center;padding-top:100px}.search.open{display:flex}.searchbox{width:min(650px,90%);background:#120d07;border:1px solid var(--g);border-radius:12px;padding:20px}.searchbox input{width:100%;background:#070605;border:1px solid #66430d;color:#fff;padding:15px;border-radius:8px;outline:none}.results{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.results button{background:#0b0907;color:#fff;border:1px solid #52340a;border-radius:8px;padding:10px;text-align:left;cursor:pointer}
+.modal{position:fixed;z-index:90;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.box{width:min(410px,100%);background:#0e0a06;border:1px solid #a86b0b;border-radius:15px;padding:25px;box-shadow:0 20px 70px #000}.box h2{margin-top:0}.box input{width:100%;padding:13px;margin:7px 0;background:#060504;border:1px solid #50340c;border-radius:8px;color:#fff}.box .primary{width:100%;padding:13px;border-radius:8px;margin-top:8px;cursor:pointer}.close{float:right;background:none;border:0;color:#aaa;font-size:22px;cursor:pointer}
+.toast{position:fixed;z-index:120;right:20px;bottom:20px;background:#151008;border:1px solid var(--g);padding:13px 17px;border-radius:9px;opacity:0;transform:translateY(10px);transition:.25s}.toast.show{opacity:1;transform:none}
+footer{border-top:1px solid #281a0a;padding:25px 22px;color:#777;font-size:11px;display:flex;justify-content:space-between}
+@media(max-width:1100px){.nav{display:none}.grid{grid-template-columns:repeat(4,1fr)}.livegrid{grid-template-columns:repeat(3,1fr)}.features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.top{height:64px}.logo{width:auto;flex:1}.logo img{width:150px}.side{position:static;width:100%;height:45px;margin-top:64px;display:flex;padding:4px;overflow:auto}.side a{white-space:nowrap;padding:9px 12px}.side .sep,.vip{display:none}main{margin:0;padding:0}.hero{height:400px}.features{grid-template-columns:1fr;margin:0 10px;padding-top:10px}.section{padding:23px 10px}.grid{grid-template-columns:repeat(2,1fr)}.livegrid{grid-template-columns:1fr 1fr}.promo{margin:0 10px 25px}.promo button{right:10px;padding:10px}.actions .login{display:none}footer{display:block}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo"><img src="assets/logo.png" alt="Bet do Interior"></div>
+  <nav class="nav">
+    <a class="active" href="#inicio">⌂ CASSINO</a><a href="#jogos">♜ ESPORTES</a><a href="#ao-vivo">♠ AO VIVO</a><a href="#promocoes">✦ PROMOÇÕES</a><a href="#vip">♛ VIP CLUB</a><a href="#jogos">🏆 TORNEIOS</a>
+  </nav>
+  <div class="actions"><button class="btn login" onclick="openModal('login')">ENTRAR</button><button class="btn register" onclick="openModal('register')">CRIAR CONTA</button></div>
+</header>
+
+<aside class="side">
+  <a class="active" href="#inicio">⌂ &nbsp; Início</a><a href="#jogos">◈ &nbsp; Slots</a><a href="#ao-vivo">♙ &nbsp; Cassino Ao Vivo</a><a href="#jogos">↗ &nbsp; Crash</a><a href="#ao-vivo">◉ &nbsp; Roleta</a><a href="#ao-vivo">♤ &nbsp; Blackjack</a><a href="#jogos">▦ &nbsp; Bingo</a>
+  <div class="sep"></div><a href="#jogos">⚽ &nbsp; Esportes</a><a href="#jogos">🎮 &nbsp; E-sports</a><a href="#jogos">🏆 &nbsp; Torneios</a><a href="#promocoes">🎁 &nbsp; Promoções</a><a href="#vip">♥ &nbsp; VIP Club</a>
+  <div class="vip"><b>♛ &nbsp; CLUBE VIP</b><small>Recompensas exclusivas para você!</small></div>
+</aside>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="slides" id="slides"><div class="slide one"></div><div class="slide two"></div></div>
+  <button class="arrow prev" onclick="move(-1)">‹</button><button class="arrow next" onclick="move(1)">›</button>
+  <div class="dots"><button class="dot on" onclick="go(0)"></button><button class="dot" onclick="go(1)"></button></div>
+</section>
+
+<section class="features">
+ <div class="feature"><i>⚡</i><div><b>SAQUE RÁPIDO</b><small>Experiência demonstrativa</small></div></div>
+ <div class="feature"><i>🛡</i><div><b>SEGURANÇA TOTAL</b><small>Ambiente de demonstração</small></div></div>
+ <div class="feature"><i>🎧</i><div><b>SUPORTE 24/7</b><small>Atendimento demonstrativo</small></div></div>
+ <div class="feature"><i>▣</i><div><b>DIVERSOS MÉTODOS</b><small>Interface ilustrativa</small></div></div>
+</section>
+
+<section id="jogos" class="section">
+ <div class="heading"><h2>🔥 JOGOS EM DESTAQUE</h2><button onclick="msg('Catálogo demonstrativo.')">VER TODOS ›</button></div>
+ <div class="grid">
+  <div class="game" onclick="game('Fortune Tiger')"><img src="assets/fortune-tiger.jpg"><p>Fortune Tiger</p></div>
+  <div class="game" onclick="game('Fortune Rabbit')"><img src="assets/fortune-rabbit.jpg"><p>Fortune Rabbit</p></div>
+  <div class="game" onclick="game('Gates of Olympus')"><img src="assets/gates-of-olympus.jpg"><p>Gates of Olympus</p></div>
+  <div class="game" onclick="game('Sweet Bonanza')"><img src="assets/sweet-bonanza.jpg"><p>Sweet Bonanza</p></div>
+  <div class="game" onclick="game('Aviator')"><img src="assets/aviator.jpg"><p>Aviator</p></div>
+  <div class="game" onclick="game('Spaceman')"><img src="assets/spaceman.jpg"><p>Spaceman</p></div>
+  <div class="game" onclick="game('Big Bass Splash')"><img src="assets/big-bass.jpg"><p>Big Bass Splash</p></div>
+  <div class="game" onclick="game('Wild Bounty Showdown')"><img src="assets/wild-bounty.jpg"><p>Wild Bounty Showdown</p></div>
+ </div>
+</section>
+
+<section id="ao-vivo" class="section">
+ <div class="heading"><h2>🔴 CASSINO AO VIVO</h2><button onclick="msg('Mesas demonstrativas.')">VER TODOS ›</button></div>
+ <div class="livegrid">
+  <div class="live" onclick="game('Roleta Brasileira')"><img src="assets/roleta.jpg"><p><span class="badge">AO VIVO</span><br>Roleta Brasileira</p></div>
+  <div class="live" onclick="game('Blackjack Ao Vivo')"><img src="assets/blackjack.jpg"><p><span class="badge">AO VIVO</span><br>Blackjack Ao Vivo</p></div>
+  <div class="live" onclick="game('Baccarat Ao Vivo')"><img src="assets/baccarat.jpg"><p><span class="badge">AO VIVO</span><br>Baccarat Ao Vivo</p></div>
+  <div class="live" onclick="game('Mega Roleta')"><img src="assets/mega-roleta.jpg"><p><span class="badge">AO VIVO</span><br>Mega Roleta</p></div>
+  <div class="live" onclick="game('Crazy Time')"><img src="assets/crazy-time.jpg"><p><span class="badge">AO VIVO</span><br>Crazy Time</p></div>
+  <div class="live" onclick="game('Lightning Roulette')"><img src="assets/lightning.jpg"><p><span class="badge">AO VIVO</span><br>Lightning Roulette</p></div>
+ </div>
+</section>
+
+<section id="promocoes" class="promo"><img src="assets/promocoes.jpg" alt="Promoções"><button onclick="msg('Promoções demonstrativas.')">VER PROMOÇÕES ›</button></section>
+<section id="vip" class="section"><div class="heading"><h2>♛ CLUBE VIP</h2><button onclick="msg('Área VIP demonstrativa.')">CONHECER ›</button></div></section>
+
+<footer><div>BET DO INTERIOR</div><div>Protótipo visual — sem apostas, depósitos ou saques reais.</div><div>© 2026</div></footer>
+</main>
+
+<div class="search" id="search"><div class="searchbox"><button class="close" onclick="closeSearch()">×</button><h2>Pesquisar jogos</h2><input id="q" placeholder="Digite o nome do jogo..." oninput="filter()"><div class="results" id="results"></div></div></div>
+<div class="modal" id="modal"><div class="box"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Entrar</h2><input placeholder="E-mail"><input placeholder="Senha" type="password"><button class="primary" onclick="closeModal();msg('Ação demonstrativa.')">CONTINUAR</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+let index=0,timer;const slides=document.getElementById('slides'),dots=document.querySelectorAll('.dot');
+function go(i){index=i;slides.style.transform=`translateX(-${i*100}%)`;dots.forEach((d,n)=>d.classList.toggle('on',n===i))}
+function move(d){go((index+d+2)%2)}
+timer=setInterval(()=>move(1),6500);
+function msg(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');clearTimeout(window.tm);window.tm=setTimeout(()=>x.classList.remove('show'),2800)}
+function game(name){msg(name+' — modo demonstrativo.')}
+function openModal(type){document.getElementById('modal').classList.add('open');document.getElementById('modalTitle').textContent=type==='register'?'Criar conta':'Entrar'}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{let id=a.getAttribute('href');if(id!=='#'){e.preventDefault();document.querySelector(id)?.scrollIntoView({behavior:'smooth'})}}))
+</script>
+</body>
+</html>
